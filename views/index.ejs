@@ -1,0 +1,55 @@
+<h1>Inventory and Shipment tracking system</h1>
+by <a href="https://andrewcancode.com/" target="_blank">Andrew Nguyen</a>
+<br>
+<hr>
+<a href="/inventory/new">New Inventory</a>
+<table class="table table-striped">
+    <tr style="border-bottom: solid 3px;">
+        <th>Title</th>
+        <th>Count</th>
+        <th>Description</th>
+        <th>Manufacturer</th>
+        <th>Actions</th>
+    </tr>
+        <% for (inventory of inventories){%>
+        <tr>
+            <td><%= inventory.title %></td> 
+            <td><%= inventory.count %></td> 
+            <td><%= inventory.desc %></td> 
+            <td><%= inventory.manufacturer %></td> 
+            <td>
+                <a href="/inventory/edit/<%= inventory._id%>">Edit</a>
+                <a href="/inventory/delete/<%= inventory._id%>">Delete</a>
+            </td> 
+        </tr>
+        <% } %>
+</table>
+<hr>
+<a href="/shipment/new">New Shipment</a>
+<table class="table table-striped">
+    <tr style="border-bottom: solid 3px;">
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Inventories</th>
+        <th>Actions</th>
+    </tr>
+        <% for (shipment of shipments){%>
+        <tr>
+            <td><%= shipment.title %></td> 
+            <td><%= shipment.desc %></td> 
+            <td><%= shipment.status %></td> 
+            <td>
+                <% for (inventory of shipment.inventories){%>
+                    <div>
+                        Title: <%= inventory.title %>; Count: <%= inventory.count %>
+                    </div>
+                <% } %>
+            </td> 
+            <td>
+                <a href="/shipment/edit/<%= shipment._id%>"> Edit</a>
+                <a href="/shipment/delete/<%= shipment._id%>"> Delete</a>
+            </td> 
+        </tr>
+        <% } %>
+</table>
