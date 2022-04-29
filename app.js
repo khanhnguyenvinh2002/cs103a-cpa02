@@ -18,9 +18,10 @@ const methodOverride = require('method-override');
 // *********************************************************** //
 
 const mongoose = require('mongoose');
-const mongodb_URI = 'mongodb+srv://richmond:password123.@cluster0.gymvd.mongodb.net/blog?retryWrites=true&w=majority'
 
-mongoose.connect(mongodb_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true }).then(()=>{
+  console.log('connected to mongoDB')
+}).catch(err => console.log(err));;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () { console.log("we are connected!!!") });
@@ -274,7 +275,7 @@ app.use(function (err, req, res, next) {
 //  Starting up the server!
 // *********************************************************** //
 //Here we set the port to use between 1024 and 65535  (2^16-1)
-const port = "5001";
+const port = process.env.PORT || 5001;
 app.set("port", port);
 
 // and now we startup the server listening on that port
