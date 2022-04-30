@@ -90,8 +90,8 @@ app.get("/",
   async (req, res, next) => {
     // req.url = '/api/inventory'
     try {
-      const inventoriesRes = await axios.get("http://localhost:5001/api/inventory")
-      const shipmentsRes = await axios.get("http://localhost:5001/api/shipment")
+      const inventoriesRes = await axios.get("https://cs103-cpa2.herokuapp.com/api/inventory")
+      const shipmentsRes = await axios.get("https://cs103-cpa2.herokuapp.com/api/shipment")
       res.locals.inventories = inventoriesRes.data
       res.locals.shipments = shipmentsRes.data
       res.render("index")
@@ -117,7 +117,7 @@ app.get("/demopage", (req, res, next) => {
 app.get("/inventories",
   async (req, res, next) => {
     try {
-      const ress = await axios.get("http://localhost:5001/api/inventory")
+      const ress = await axios.get("https://cs103-cpa2.herokuapp.com/api/inventory")
       res.locals.inventories = ress.data
       res.render("inventories")
 
@@ -132,7 +132,7 @@ app.get("/inventory/edit/:id",
   async (req, res, next) => {
     try {
       const id = req.params.id;
-      const ress = await axios.get(`http://localhost:5001/api/inventory/${id}`)
+      const ress = await axios.get(`https://cs103-cpa2.herokuapp.com/api/inventory/${id}`)
       res.locals.inventory = ress.data
       res.render("editInventory")
 
@@ -147,7 +147,7 @@ app.put("/inventory/edit/:id",
   async (req, res, next) => {
     const id = req.params.id;
     try {
-      const ress = await axios.put(`http://localhost:5001/api/inventory/${id}`, req.body)
+      const ress = await axios.put(`https://cs103-cpa2.herokuapp.com/api/inventory/${id}`, req.body)
       res.redirect("/")
     }
     catch (err) {
@@ -160,7 +160,7 @@ app.put("/inventory/edit/:id",
 app.post("/inventory/new",
   async (req, res, next) => {
     try {
-      const ress = await axios.post(`http://localhost:5001/api/inventory`, req.body)
+      const ress = await axios.post(`https://cs103-cpa2.herokuapp.com/api/inventory`, req.body)
       res.redirect("/")
     }
     catch (err) {
@@ -179,7 +179,7 @@ app.get("/inventory/delete/:id",
   async (req, res, next) => {
     try {
       const id = req.params.id;
-      const ress = await axios.delete(`http://localhost:5001/api/inventory/${id}`)
+      const ress = await axios.delete(`https://cs103-cpa2.herokuapp.com/api/inventory/${id}`)
       res.redirect("/")
 
     }
@@ -193,7 +193,7 @@ app.get("/shipment/edit/:id",
   async (req, res, next) => {
     try {
       const id = req.params.id;
-      const ress = await axios.get(`http://localhost:5001/api/shipment/${id}`)
+      const ress = await axios.get(`https://cs103-cpa2.herokuapp.com/api/shipment/${id}`)
       res.locals.shipment = ress.data
       res.render("editShipment")
 
@@ -208,7 +208,7 @@ app.put("/shipment/edit/:id",
   async (req, res, next) => {
     const id = req.params.id;
     try {
-      const ress = await axios.put(`http://localhost:5001/api/shipment/${id}`, req.body)
+      const ress = await axios.put(`https://cs103-cpa2.herokuapp.com/api/shipment/${id}`, req.body)
       res.redirect("/")
     }
     catch (err) {
@@ -221,7 +221,7 @@ app.put("/shipment/edit/:id",
 app.post("/shipment/new",
   async (req, res, next) => {
     try {
-      const ress = await axios.post(`http://localhost:5001/api/shipment`, req.body)
+      const ress = await axios.post(`https://cs103-cpa2.herokuapp.com/api/shipment`, req.body)
       res.redirect("/")
     }
     catch (err) {
@@ -234,7 +234,7 @@ app.post("/shipment/new",
 app.get("/shipment/new",
   async (req, res, next) => {
     try {
-      const ress = await axios.get("http://localhost:5001/api/inventory")
+      const ress = await axios.get("https://cs103-cpa2.herokuapp.com/api/inventory")
       res.locals.inventories = ress.data
       res.render("newShipment")
 
@@ -248,7 +248,7 @@ app.get("/shipment/delete/:id",
   async (req, res, next) => {
     try {
       const id = req.params.id;
-      const ress = await axios.delete(`http://localhost:5001/api/shipment/${id}`)
+      const ress = await axios.delete(`https://cs103-cpa2.herokuapp.com/api/shipment/${id}`)
       res.redirect("/")
 
     }
